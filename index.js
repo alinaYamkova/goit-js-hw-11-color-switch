@@ -28,7 +28,7 @@ function onStart() {
   intervalId = setInterval(() => {
     const randomColor = colors[randomIntegerFromInterval(1, 6)];
     console.log(randomColor);
-    body.style.backgroungColor = randomColor
+    body.style.backgroundColor = randomColor;
   }, 1000);
 };
 
