@@ -9,30 +9,33 @@ const colors = [
 const body = document.querySelector('body');
 const startBtn = document.querySelector('button[data-action=start]');
 const stopBtn = document.querySelector('button[data-action=stop]');
+let isActive = false;
 let intervalId = null;
 
 const randomIntegerFromInterval = (min, max) => {
   return Math.floor(Math.random() * (max - min + 1) + min);
 };
-// const idx = randomIntegerFromInterval(1, 6);
+
+function changeColors() {
+  const idx = randomIntegerFromInterval(0, colors.length - 1);
+  body.style.backgroundColor = colors[idx];
+};
 
 startBtn.addEventListener('click', onStart);
 stopBtn.addEventListener('click', onStop);
   
 function onStart() {
-  if (onStop) {
-    clearInterval(intervalId);
+  if(isActive) {
     return;
-  }; 
+  };
 
-  intervalId = setInterval(() => {
-    const randomColor = colors[randomIntegerFromInterval(1, 6)];
-    console.log(randomColor);
-    body.style.backgroundColor = randomColor;
-  }, 1000);
+  intervalId = setInterval(changeColors, 1000);
+  isActive = true;
+  console.log("click");
 };
 
 function onStop() {
   clearInterval(intervalId);
+  isActive = false;
   console.log("setInterval stopped!");
 };
