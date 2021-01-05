@@ -28,6 +28,8 @@ function onStart() {
   if(isActive) {
     return;
   };
+  disable(startBtn);
+  enable(stopBtn);
 
   intervalId = setInterval(changeColors, 1000);
   isActive = true;
@@ -36,6 +38,15 @@ function onStart() {
 
 function onStop() {
   clearInterval(intervalId);
+  disable(stopBtn);
+  enable(startBtn);
   isActive = false;
   console.log("setInterval stopped!");
 };
+ 
+function disable(elm, value){
+return elm.setAttribute("disabled", true);
+};
+function enable(elm){
+return elm.removeAttribute("disabled");
+}
